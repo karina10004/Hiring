@@ -1,8 +1,14 @@
 import React from 'react'
+import {useState} from 'react'
+import {Layout} from 'antd';
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <Layout>
+      <Sider className = 'sidebar'>
+
+      </Sider>
+    </Layout>
   )
 }
 

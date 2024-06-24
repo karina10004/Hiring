@@ -1,10 +1,9 @@
-
- *{
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-body{
+.form-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,14 +25,13 @@ body{
 } */
 .title, .slogan{
   text-align: center;
-  
 }
-.btn{
+.btn {
   width: 100%;
   text-align: center;
   background-color: #cbdbff;
 }
-.auth-image{
+.auth-image {
   width: 100%;
   border-radius: 8px;
 }
