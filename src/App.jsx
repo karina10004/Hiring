@@ -4,6 +4,7 @@ import Dashboard from './pages/company/Dashboard';
 import Register from './Auth/Register';
 import Login from './Auth/Login';
 
+
 const App = () => {
   return (
     <Router>
