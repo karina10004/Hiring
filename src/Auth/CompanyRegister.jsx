@@ -43,7 +43,7 @@ const Register = () => {
                         type: 'emails',
                         message : 'The input is not valid email'
                     }
-                 ]}>
+                 ]}> 
                 <Input size="large" placeholder = "Enter your email address"/>
                  </Form.Item>
 
