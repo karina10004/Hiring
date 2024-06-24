@@ -1,0 +1,36 @@
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: white;
+}
+
+.ant-form-item {
+    margin-bottom: 12px; 
+    background: white;
+  }
+   
+.form-container {
+    max-width: 1000px; 
+    margin: 0 auto; 
+    max-height: 700px;
+    padding: 20px; 
+    background: white;
+  }
+/* .form-container{
+  width: 1000px;
+} */
+.title, .slogan{
+
+  text-align: center;
+}
+.btn {
+  width: 100%;
+  text-align: center;
+  background-color: #cbdbff;
+}
+.auth-image {
+  width: 100%;
+  border-radius: 8px;
+}
