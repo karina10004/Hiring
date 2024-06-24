@@ -2,8 +2,9 @@ import React from 'react'
 import {Card, Flex ,Typography, Form, Input} from 'antd'
 import { Button } from 'antd/es/radio';
 import { Link } from 'react-router-dom';
+import './Auth.css'
 import LoginImage from '../assets/Login.png'
-const Register = () => {
+const CompanyRegister = () => {
     const handleregister = (values) =>{
        console.log(values);
     }
@@ -15,13 +16,10 @@ const Register = () => {
                 <Typography.Title level={3} strong className="title">
                     Register Company
                 </Typography.Title>
-                <Typography.Text type="secondary" strong className="slogan">
-                    Join for exclusive access
-                </Typography.Text>
                 <Form layout="vertical" onFinish={handleregister}
                 autoComplete="off">
                  <Form.Item 
-                 label="full Name" 
+                 label="Name" 
                  name="name" 
                  rules={[
                     {
@@ -29,22 +27,33 @@ const Register = () => {
                         message : 'please input your full name'
                     },
                  ]}>
-                    <Input size="large" placeholder = "Enter your full name"/>
+                    <Input size="large" placeholder = "Enter your name"/>
                  </Form.Item>
                  <Form.Item 
-                 label="Email" 
-                 name="email" 
+                 label="description" 
+                 name="desc" 
                  rules={[
                     {
                         required: true,
-                        message : 'please input your email'
+                        message : 'please input your description'
+                    },
+                 ]}>
+                    <Input size="large" placeholder = "Enter your description"/>
+                 </Form.Item>
+                 <Form.Item 
+                 label="Username" 
+                 name="username" 
+                 rules={[
+                    {
+                        required: true,
+                        message : 'please input your username'
                     },
                     {
-                        type: 'emails',
-                        message : 'The input is not valid email'
+                        type: 'string',
+                    
                     }
                  ]}> 
-                <Input size="large" placeholder = "Enter your email address"/>
+                <Input size="large" placeholder = "Enter your usename"/>
                  </Form.Item>
 
                  <Form.Item 
@@ -58,6 +67,33 @@ const Register = () => {
     
                  ]}>
                 <Input.Password size="large" placeholder = "Enter your password"/>
+                </Form.Item>
+                <Form.Item 
+                 label="logo" 
+                 name="logo" 
+                 rules={[
+                    {
+                        required: true,
+                        message : 'please upload the logo'
+                    },{
+                        type : 'file'
+                    }
+    
+                 ]}>
+                <Input size="large" placeholder = "upload logo"/>
+                </Form.Item>
+
+                <Form.Item 
+                 label="location" 
+                 name="location" 
+                 rules={[
+                    {
+                        required: true,
+                        message : 'please input your location'
+                    },
+    
+                 ]}>
+                <Input size="large" placeholder = "Enter your location"/>
                 </Form.Item>
                  
                 <Form.Item>
@@ -81,4 +117,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default CompanyRegister
