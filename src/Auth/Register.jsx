@@ -3,6 +3,7 @@ import {Card, Flex ,Typography, Form, Input} from 'antd'
 import { Button } from 'antd/es/radio';
 import { Link } from 'react-router-dom';
 import registerImage from '../assets/register.png'
+import './Auth.css'
 const Register = () => {
     const handleregister = (values) =>{
        console.log(values);
