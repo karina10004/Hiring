@@ -6,6 +6,7 @@ import Login from "./Auth/Login";
 import CandidateHome from "./pages/candidate/Home";
 import CompanyRegister from './Auth/CompanyRegister'
 import CompanyLogin from './Auth/CompanyLogin'
+import AddHiring from './pages/company/AddHiringProcess'
 const App = () => {
   return (
     <Router>
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/candidate" element={<CandidateHome />} />
         <Route path="/companylogin" element={<CompanyLogin />} />
         <Route path="/companyregister" element={<CompanyRegister />} />
+        <Route path="/hiring" element={<AddHiring/>} />
       </Routes>
     </Router>
   );
