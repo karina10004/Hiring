@@ -4,9 +4,11 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: white;
+  
 }
-
+.style{
+  margin: auto;
+}
 .ant-form-item {
     margin-bottom: 12px; 
     background: white;
@@ -15,7 +17,7 @@
 .form-container {
     max-width: 1000px; 
     margin: 0 auto; 
-    max-height: 700px;
+    max-height: 900px;
     padding: 20px; 
     background: white;
   }
