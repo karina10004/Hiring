@@ -46,15 +46,13 @@ const Register = () => {
   };
 
   return (
+    <div className="style">
     <Card className="form-container">
       <Flex gap="large" align="center">
         <Flex vertical flex={1}>
           <Typography.Title level={3} strong className="title">
             Create an account
           </Typography.Title>
-          <Typography.Text type="secondary" strong className="slogan">
-            Join for exclusive access
-          </Typography.Text>
           <Form layout="vertical" autoComplete="off">
             <Form.Item
               label="Full Name"
@@ -173,6 +171,7 @@ const Register = () => {
         </Flex>
       </Flex>
     </Card>
+    </div>
   );
 };
 

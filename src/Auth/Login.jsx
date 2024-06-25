@@ -92,7 +92,7 @@ const Login = () => {
             <Form.Item>
               <Button
                 type="primary"
-                htmlType="button" // Use type="button" to prevent form submission
+                htmlType="button" 
                 size="large"
                 className="btn"
                 onClick={handleLogin}

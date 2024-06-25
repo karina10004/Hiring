@@ -59,17 +59,17 @@ const CompanyRegister = () => {
         logoUrl: "www.example.com/png",
       };
 
-      // const response = await axios.post(
-      //   "http://localhost:8000/api/company/register",
-      //   data,
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
+      const response = await axios.post(
+        "http://localhost:8000/api/company/register",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      // message.success(response.data.message);
+      message.success(response.data.message);
       navigate("/companylogin");
     } catch (error) {
       console.log(error);
