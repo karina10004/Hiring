@@ -34,6 +34,8 @@ const CompanyLogin = () => {
         }
       );
 
+      localStorage.setItem("access_token", response.data.access_token);
+
       navigate("/dashboard");
     } catch (error) {
       console.error("Login error:", error);
