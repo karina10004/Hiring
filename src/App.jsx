@@ -9,7 +9,7 @@ import CompanyLogin from "./Auth/CompanyLogin";
 import AddHiring from "./pages/company/AddHiringProcess";
 import AddEmployee from "./pages/company/AddEmployee";
 import ManageHiringProcess from "./pages/company/ManageHiringProcess";
-
+import Editor from './pages/candidate/Coding.jsx/Editor' 
 const App = () => {
   return (
     <Router>
@@ -23,6 +23,7 @@ const App = () => {
         <Route path="/hiring" element={<AddHiring />} />
         <Route path="/employee" element={<AddEmployee />} />
         <Route path="/manage/:id" element={<ManageHiringProcess />} />
+        <Route path="/editor" element={<Editor/>} />
       </Routes>
     </Router>
   );
