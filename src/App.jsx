@@ -7,8 +7,8 @@ import CandidateHome from "./pages/candidate/Home";
 import CompanyRegister from './Auth/CompanyRegister'
 import CompanyLogin from './Auth/CompanyLogin'
 import AddHiring from './pages/company/AddHiringProcess'
-import AddEmployee from './pages/company/AddEmployee'
-
+// import AddEmployee from ' ./pages/company/AddEmployee'
+import Editor from './pages/candidate/Coding.jsx/Editor'
 const App = () => {
   return (
     <Router>
@@ -20,7 +20,8 @@ const App = () => {
         <Route path="/companylogin" element={<CompanyLogin />} />
         <Route path="/companyregister" element={<CompanyRegister />} />
         <Route path="/hiring" element={<AddHiring/>} />
-        <Route path="/employee" element={<AddEmployee/>} />
+        {/* <Route path="/employee" element={<AddEmployee/>} /> */}
+        <Route path="/editor" element={<Editor/>} />
       </Routes>
     </Router>
   );
