@@ -10,6 +10,9 @@ import AddHiring from "./pages/company/AddHiringProcess";
 import AddEmployee from "./pages/company/AddEmployee";
 import ManageHiringProcess from "./pages/company/ManageHiringProcess";
 import Editor from './pages/candidate/Coding.jsx/Editor' 
+import Questions from './pages/candidate/Coding.jsx/Questions' 
+import EmployeeLogin from './pages/employee/EmployeeLogin'
+import EmployeeDash from "./pages/employee/EmployeeDash";
 const App = () => {
   return (
     <Router>
@@ -24,6 +27,9 @@ const App = () => {
         <Route path="/employee" element={<AddEmployee />} />
         <Route path="/manage/:id" element={<ManageHiringProcess />} />
         <Route path="/editor" element={<Editor/>} />
+        <Route path="/question" element={<Questions/>} />
+        <Route path="/employeelogin" element={<EmployeeLogin/>} />
+        <Route path="/employeedash" element={<EmployeeDash/>} />
       </Routes>
     </Router>
   );
