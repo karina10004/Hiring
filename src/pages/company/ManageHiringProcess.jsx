@@ -55,7 +55,6 @@ const ManageHiringProcess = () => {
         startDate: hiringData.startDate,
         endDate: hiringData.endDate,
       });
-
       const codingRoundDetails = await Promise.all(
         hiringData.codingRounds.map(async (roundId) => {
           const roundResponse = await axios.get(
@@ -111,7 +110,7 @@ const ManageHiringProcess = () => {
       const companyId = jwtDecode(access_token).id;
       await axios.put(
         `http://localhost:8000/api/hiring/update/${companyId}/${id}`,
-        formData,
+        { ...formData, registrationLink: hiringProcess.registrationLink },
         {
           headers: {
             "Content-Type": "application/json",
@@ -136,7 +135,6 @@ const ManageHiringProcess = () => {
       const values = await modalForm.validateFields();
       const access_token = localStorage.getItem("access_token");
       const companyId = jwtDecode(access_token).id;
-
       if (modalType === "coding") {
         await axios.post(
           `http://localhost:8000/api/codinground/create/${id}`,
