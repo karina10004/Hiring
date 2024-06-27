@@ -14,6 +14,8 @@ import Questions from "./pages/candidate/Coding.jsx/Questions";
 import EmployeeLogin from "./pages/employee/EmployeeLogin";
 import EmployeeDash from "./pages/employee/EmployeeDash";
 import RegistrationLinkHandler from "./pages/candidate/ProcessRegistraton";
+import MeetingRoom from "./interview/MeetingRoom";
+import CreateJoinMeeting from "./interview/JoinMeeting";
 
 const App = () => {
   return (
@@ -28,11 +30,13 @@ const App = () => {
         <Route path="/hiring" element={<AddHiring />} />
         <Route path="/employee" element={<AddEmployee />} />
         <Route path="/manage/:id" element={<ManageHiringProcess />} />
-        <Route path="/editor" element={<Editor />} />
+        <Route path="/editor/:id" element={<Editor />} />
         <Route path="/question" element={<Questions />} />
         <Route path="/employeelogin" element={<EmployeeLogin />} />
         <Route path="/employeedash" element={<EmployeeDash />} />
         <Route path="/register/:token" element={<RegistrationLinkHandler />} />
+        <Route path="/meeting" element={<CreateJoinMeeting />} />
+        <Route path="/meeting/:roomName" element={<MeetingRoom />} />
       </Routes>
     </Router>
   );
