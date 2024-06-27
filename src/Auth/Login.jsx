@@ -29,7 +29,7 @@ const Login = () => {
           },
         }
       );
-
+      localStorage.setItem("access_token", response.data.access_token);
       message.success(response.data.message);
 
       const registrationToken = localStorage.getItem("registrationToken");
