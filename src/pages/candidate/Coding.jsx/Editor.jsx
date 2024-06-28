@@ -73,19 +73,25 @@ const CodeEditor = () => {
   useEffect(() => {
     const access_token = localStorage.getItem("access_token");
     const type = jwtDecode(access_token).type;
+    const userid = jwtDecode(access_token).id;
     if (type != "candidate") {
       message.warning("You need to be a candidate to access this page");
       navigate("/login");
     }
+    if (!userid) {
+      message.warning("You need to be a login to access this page");
+      navigate("/login");
+    }
     setUserId(jwtDecode(access_token).id);
+
     const fetchQuestion = async () => {
       try {
         const response = await axios.get(
           `http://localhost:8000/api/question/get/${id}`
-        ); // Use the ID from the URL
+        );
         setQuestion(response.data);
       } catch (error) {
-        message.error("Failed to fetch question data.");
+        // message.error("Failed to fetch question data.");
         console.error("Error fetching question data:", error);
       }
     };

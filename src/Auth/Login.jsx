@@ -34,7 +34,8 @@ const Login = () => {
 
       const registrationToken = localStorage.getItem("registrationToken");
       if (registrationToken) {
-        const candidateId = response.data._id;
+        const candidateId = response.data.candidate._id;
+        console.log(candidateId);
         const registerResponse = await axios.post(
           `http://localhost:8000/api/register/${registrationToken}/${candidateId}`
         );

@@ -9,6 +9,7 @@ import CompanyLogin from "./Auth/CompanyLogin";
 import AddHiring from "./pages/company/AddHiringProcess";
 import AddEmployee from "./pages/company/AddEmployee";
 import ManageHiringProcess from "./pages/company/ManageHiringProcess";
+import ManageCodingRound from "./pages/company/ManageCodingRound";
 import Editor from "./pages/candidate/Coding.jsx/Editor";
 import Questions from "./pages/candidate/Coding.jsx/Questions";
 import EmployeeLogin from "./pages/employee/EmployeeLogin";
@@ -16,6 +17,7 @@ import EmployeeDash from "./pages/employee/EmployeeDash";
 import RegistrationLinkHandler from "./pages/candidate/ProcessRegistraton";
 import MeetingRoom from "./interview/MeetingRoom";
 import CreateJoinMeeting from "./interview/JoinMeeting";
+import ManageInterview from "./pages/company/ManageInterview";
 
 const App = () => {
   return (
@@ -24,14 +26,22 @@ const App = () => {
         <Route path="/" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/candidate" element={<CandidateHome />} />
+        <Route
+          path="/process/:companyId/:processId"
+          element={<CandidateHome />}
+        />
         <Route path="/companylogin" element={<CompanyLogin />} />
         <Route path="/companyregister" element={<CompanyRegister />} />
         <Route path="/hiring" element={<AddHiring />} />
         <Route path="/employee" element={<AddEmployee />} />
         <Route path="/manage/:id" element={<ManageHiringProcess />} />
-        <Route path="/editor/:id" element={<Editor />} />
-        <Route path="/question" element={<Questions />} />
+        <Route path="/manage/codinground/:id" element={<ManageCodingRound />} />
+        <Route
+          path="/manage/interviewround/:processId/:id"
+          element={<ManageInterview />}
+        />
+        <Route path="/question/:id" element={<Editor />} />
+        <Route path="/assessment/:processId/:id" element={<Questions />} />
         <Route path="/employeelogin" element={<EmployeeLogin />} />
         <Route path="/employeedash" element={<EmployeeDash />} />
         <Route path="/register/:token" element={<RegistrationLinkHandler />} />
