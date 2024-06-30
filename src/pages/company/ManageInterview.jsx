@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import Sidebar from "./companydashboard/Dashboard";
 import { useParams } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 const { Header, Sider, Content } = Layout;
 const { Option } = Select;
@@ -119,11 +120,25 @@ const ManageInterview = () => {
       await Promise.all(promises);
       message.success("Interview assignments saved successfully!");
       fetchCandidates();
+      employees.map(async (emp) => {
+        const link = `http://${window.location.host}/interview/admin/${processId}/${id}`;
+        await emailjs.send("service_kdjbg5o", "template_d0qkf0h", {
+          subject: "Interview round created",
+          header: "Check on the given link for interview round details",
+          message: `this is the link ${link}`,
+          info: "null",
+          recipientEmail: "anshjain2255@gmail.com",
+        });
+      });
     } catch (error) {
       console.error("Failed to save interview assignments:", error);
       message.error("Failed to save interview assignments");
     }
   };
+
+  useEffect(() => {
+    emailjs.init("Oe0L9iQlLy0etAYWu");
+  }, []);
 
   const unassignedColumns = [
     {

@@ -299,7 +299,7 @@ const ManageCodingRound = () => {
                   mode="multiple"
                   placeholder="Select programming languages"
                 >
-                  <Option value="c++">C++</Option>
+                  <Option value="cpp">C++</Option>
                   <Option value="java">Java</Option>
                   <Option value="python">Python</Option>
                 </Select>

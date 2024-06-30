@@ -66,11 +66,12 @@ const HiringProcessForm = () => {
       message.success("Hiring process created successfully!");
       console.log(response.data);
       const link = `http://${window.location.host}/manage/${response.data.hiringProcess._id}`;
+      const registerLink = `http://${window.location.host}/register/${response.data.hiringProcess.registrationLink}`;
       await emailjs.send("service_kdjbg5o", "template_d0qkf0h", {
         subject: "Process created",
         header: "Thank you for hiring on our platform",
         message: `your process haas been successfully created, here is the link to access it 
-        ${link}`,
+        ${link} , and here is the link to register for the process ${registerLink}`,
         info: "null",
         recipientEmail: "anshjain2255@gmail.com",
       });

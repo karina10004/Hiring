@@ -66,8 +66,10 @@ const CandidateInterview = () => {
       setRemoteSocketId(remotePeerId);
       setIsCalling(true);
     });
-    socket.on("call:me", ({ remotePeerId }) => {
+    socket.on("call:me", ({ remoteSocketId, remotePeerId }) => {
       callPeer(remotePeerId);
+
+      socket.emit("id:transfer", { remoteSocketId, candidateId });
     });
     window.addEventListener("beforeunload", handleBeforeUnload);
 

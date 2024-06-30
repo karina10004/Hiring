@@ -144,6 +144,9 @@ const CandidateHome = () => {
                     <strong>Interviewers:</strong>{" "}
                     {round.interviewers.join(", ")}
                   </p>
+                  <Button type="primary">
+                    <Link to={`/interview/${round._id}`}>Go to interview</Link>
+                  </Button>
                 </Timeline.Item>
               ))}
               <Timeline.Item dot={<ClockCircleOutlined />} color="green">

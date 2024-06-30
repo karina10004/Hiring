@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Typography, Card, Button, Space } from "antd";
+import {
+  Typography,
+  Card,
+  Button,
+  Space,
+  Form,
+  Input,
+  Select,
+  message,
+} from "antd";
 import { useSocket } from "../../context/SocketProvider";
 import {
   CloseOutlined,
@@ -10,8 +19,10 @@ import {
   AudioMutedOutlined,
 } from "@ant-design/icons";
 import Peer from "peerjs";
+import axios from "axios";
 
 const { Title } = Typography;
+const { Option } = Select;
 
 const Interview = () => {
   const { interviewId, processId } = useParams();
@@ -23,11 +34,15 @@ const Interview = () => {
   const [localStream, setLocalStream] = useState(null);
   const [isCameraOn, setIsCameraOn] = useState(true);
   const [isMicOn, setIsMicOn] = useState(true);
+  const [candidateId, setCandidateId] = useState("");
 
   useEffect(() => {
     const peerInstance = new Peer();
     setPeer(peerInstance);
-
+    socket.on("id:transfer", ({ candidateId }) => {
+      console.log(candidateId);
+      setCandidateId(candidateId);
+    });
     peerInstance.on("open", (id) => {
       setPeerId(id);
       const remoteSocketId = localStorage.getItem("remotePeerId");
@@ -53,6 +68,7 @@ const Interview = () => {
       if (localStream) {
         localStream.getTracks().forEach((track) => track.stop());
       }
+      socket.off("id:transfer");
     };
   }, []);
 
@@ -75,6 +91,20 @@ const Interview = () => {
     navigate(`/`);
   };
 
+  const onFinish = async (values) => {
+    try {
+      await axios.post(`http://localhost:8000/api/result/create`, {
+        ...values,
+        roundId: interviewId,
+        roundType: "interview",
+        candidateId,
+      });
+      message.success("Result submitted successfully");
+    } catch (error) {
+      message.error("Failed to submit the result");
+    }
+  };
+
   useEffect(() => {
     const localVideo = document.getElementById("localVideo");
     const remoteVideo = document.getElementById("remoteVideo");
@@ -89,8 +119,8 @@ const Interview = () => {
   }, [localStream, remoteStream]);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <Card>
+    <div style={{ display: "flex", padding: "20px" }}>
+      <Card style={{ flex: 1, marginRight: "20px" }}>
         <Title level={2}>Interview</Title>
         <div>
           <video
@@ -122,6 +152,40 @@ const Interview = () => {
             Leave Call
           </Button>
         </Space>
+      </Card>
+      <Card style={{ width: "300px" }}>
+        <Title level={3}>Submit Result</Title>
+        <Form layout="vertical" onFinish={onFinish}>
+          <Form.Item
+            name="status"
+            label="Status"
+            rules={[{ required: true, message: "Please select a status" }]}
+          >
+            <Select placeholder="Select a status">
+              <Option value="Pass">Passed</Option>
+              <Option value="Fail">Failed</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="score"
+            label="Score"
+            rules={[{ required: true, message: "Please input a score" }]}
+          >
+            <Input type="number" placeholder="Enter score" />
+          </Form.Item>
+          <Form.Item
+            name="feedback"
+            label="Feedback"
+            rules={[{ required: true, message: "Please input feedback" }]}
+          >
+            <Input.TextArea placeholder="Enter feedback" />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
       </Card>
     </div>
   );
