@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Flex, Typography, Form, Input, message } from "antd";
 import { Button } from "antd/es/radio";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoginImage from "../assets/Login.png";
+import emailjs from "@emailjs/browser";
 import "./Auth.css";
 
 const Login = () => {
@@ -34,12 +35,25 @@ const Login = () => {
 
       const registrationToken = localStorage.getItem("registrationToken");
       if (registrationToken) {
-        const candidateId = response.data._id;
+        const candidateId = response.data.candidate._id;
+        console.log(candidateId);
         const registerResponse = await axios.post(
           `http://localhost:8000/api/register/${registrationToken}/${candidateId}`
         );
+        const link = `http://${window.location.host}/process/${response.data.companyId}/${response.data.hiringId}`;
+        await emailjs.send("service_kdjbg5o", "template_d0qkf0h", {
+          subject: "Registered",
+          header: "Thank you for registering on our platform",
+          message: `here is the link to access it 
+          ${link}`,
+          info: "null",
+          recipientEmail: "anshjain2255@gmail.com",
+        });
         console.log("Registration response:", registerResponse.data);
         localStorage.removeItem("registrationToken");
+        navigate(
+          `/process/${response.data.companyId}/${response.data.hiringId}`
+        );
       }
 
       navigate("/candidate");
@@ -48,6 +62,10 @@ const Login = () => {
       message.error(error.response?.data?.msg || "Login failed");
     }
   };
+
+  useEffect(() => {
+    emailjs.init("Oe0L9iQlLy0etAYWu");
+  }, []);
 
   return (
     <Card className="form-container">

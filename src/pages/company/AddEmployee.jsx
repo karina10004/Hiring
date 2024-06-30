@@ -3,7 +3,7 @@ import { Card, Typography, Form, Input, Button, message, Layout } from "antd";
 import axios from "axios";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { jwtDecode } from "jwt-decode";
-import Sidebar from "./companydashboard/Dashboard"; // Adjust the import path as needed
+import Sidebar from "./companydashboard/Dashboard";
 import "./AddEmployee.css";
 
 const { Header, Sider, Content } = Layout;
