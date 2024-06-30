@@ -18,6 +18,11 @@ import RegistrationLinkHandler from "./pages/candidate/ProcessRegistraton";
 import MeetingRoom from "./interview/MeetingRoom";
 import CreateJoinMeeting from "./interview/JoinMeeting";
 import ManageInterview from "./pages/company/ManageInterview";
+import Redirector from "./pages/employee/Redirector";
+import Interview from "./pages/employee/Interview";
+import CandidateInterview from "./pages/candidate/CandidateInterview";
+import CodingRoundScores from "./pages/company/CodingRoundResult";
+import Room from "./pages/employee/Room";
 
 const App = () => {
   return (
@@ -40,13 +45,30 @@ const App = () => {
           path="/manage/interviewround/:processId/:id"
           element={<ManageInterview />}
         />
+        <Route
+          path="/createresult/:hiringId/:roundId"
+          element={<CodingRoundScores />}
+        />
         <Route path="/question/:id" element={<Editor />} />
         <Route path="/assessment/:processId/:id" element={<Questions />} />
         <Route path="/employeelogin" element={<EmployeeLogin />} />
         <Route path="/employeedash" element={<EmployeeDash />} />
         <Route path="/register/:token" element={<RegistrationLinkHandler />} />
-        <Route path="/meeting" element={<CreateJoinMeeting />} />
-        <Route path="/meeting/:roomName" element={<MeetingRoom />} />
+        {/* <Route path="/meeting" element={<CreateJoinMeeting />} /> */}
+        {/* <Route path="/meeting/:roomName" element={<MeetingRoom />} />\ */}
+        <Route path="/goto/:processId/:interviewId" element={<Redirector />} />
+        <Route
+          path="/interview/room/:processId/:interviewId"
+          element={<Room />}
+        />
+        <Route
+          path="/interview/admin/:processId/:interviewId"
+          element={<Interview />}
+        />
+        <Route
+          path="/interview/:interviewId"
+          element={<CandidateInterview />}
+        />
       </Routes>
     </Router>
   );

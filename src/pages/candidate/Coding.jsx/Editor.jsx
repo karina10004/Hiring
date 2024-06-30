@@ -101,36 +101,36 @@ const CodeEditor = () => {
 
   const handleRunCode = async () => {
     try {
-      // const results = await runCodeOnJudge0(
-      //   code,
-      //   languageIds[language],
-      //   question.testcases,
-      //   question.score
-      // );
-      const results = {
-        results: [
-          {
-            stdout: "as",
-            status: {
-              id: 3,
-              description: "Accepted",
-            },
-            compile_output: null,
-            id: "667aab054b8541a3dec8b82c",
-          },
-          {
-            stdout: "as",
-            status: {
-              id: 4,
-              description: "Wrong Answer",
-            },
-            compile_output: null,
-            id: "667aab054b8541a3dec8b82d",
-          },
-        ],
-        score: 0,
-        testCasesPassed: 1,
-      };
+      const results = await runCodeOnJudge0(
+        code,
+        languageIds[language],
+        question.testcases,
+        question.score
+      );
+      // const results = {
+      //   results: [
+      //     {
+      //       stdout: "as",
+      //       status: {
+      //         id: 3,
+      //         description: "Accepted",
+      //       },
+      //       compile_output: null,
+      //       id: "667aab054b8541a3dec8b82c",
+      //     },
+      //     {
+      //       stdout: "as",
+      //       status: {
+      //         id: 4,
+      //         description: "Wrong Answer",
+      //       },
+      //       compile_output: null,
+      //       id: "667aab054b8541a3dec8b82d",
+      //     },
+      //   ],
+      //   score: 0,
+      //   testCasesPassed: 1,
+      // };
       console.log(results);
       createUpdateSubmission(results.score, results.testCasesPassed, "pass");
       handleResponse(results.results);
@@ -140,36 +140,36 @@ const CodeEditor = () => {
   };
 
   const handleSubmitCode = async () => {
-    // const results = await submitCodeToJudge0(
-    //   code,
-    //   languageIds[language],
-    //   question.testcases,
-    //   question.score
-    // );
-    const results = {
-      results: [
-        {
-          stdout: "as",
-          status: {
-            id: 3,
-            description: "Accepted",
-          },
-          compile_output: null,
-          id: "667aab054b8541a3dec8b82c",
-        },
-        {
-          stdout: "as",
-          status: {
-            id: 4,
-            description: "Wrong Answer",
-          },
-          compile_output: null,
-          id: "667aab054b8541a3dec8b82d",
-        },
-      ],
-      score: 0,
-      testCasesPassed: 1,
-    };
+    const results = await submitCodeToJudge0(
+      code,
+      languageIds[language],
+      question.testcases,
+      question.score
+    );
+    // const results = {
+    //   results: [
+    //     {
+    //       stdout: "as",
+    //       status: {
+    //         id: 3,
+    //         description: "Accepted",
+    //       },
+    //       compile_output: null,
+    //       id: "667aab054b8541a3dec8b82c",
+    //     },
+    //     {
+    //       stdout: "as",
+    //       status: {
+    //         id: 4,
+    //         description: "Wrong Answer",
+    //       },
+    //       compile_output: null,
+    //       id: "667aab054b8541a3dec8b82d",
+    //     },
+    //   ],
+    //   score: 0,
+    //   testCasesPassed: 1,
+    // };
     console.log(results);
     handleResponse(results.results);
     createUpdateSubmission(results.score, results.testCasesPassed, "pass");
