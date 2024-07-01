@@ -121,7 +121,7 @@ const ManageInterview = () => {
       message.success("Interview assignments saved successfully!");
       fetchCandidates();
       employees.map(async (emp) => {
-        const link = `http://${window.location.host}/interview/admin/${processId}/${id}`;
+        const link = `http://${window.location.host}/interview/room/${processId}/${id}`;
         await emailjs.send("service_kdjbg5o", "template_d0qkf0h", {
           subject: "Interview round created",
           header: "Check on the given link for interview round details",

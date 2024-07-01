@@ -13,8 +13,8 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import Sidebar from "./companydashboard/Dashboard";
-import { useParams, Link } from "react-router-dom";
-
+import { useParams, Link, useNavigate } from "react-router-dom";
+import "./Managehiring.css";
 const { Header, Sider, Content } = Layout;
 
 const ManageHiringProcess = () => {
@@ -33,6 +33,7 @@ const ManageHiringProcess = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalType, setModalType] = useState("");
   const [modalForm] = Form.useForm();
+  const navigate = useNavigate();
 
   const fetchHiringProcess = async () => {
     try {
@@ -202,9 +203,19 @@ const ManageHiringProcess = () => {
       title: "Action",
       key: "action",
       render: (text, record) => (
-        <Link to={`/manage/codinground/${record._id}`}>
-          <Button type="primary">Manage</Button>
-        </Link>
+        <div>
+          <Link to={`/manage/codinground/${record._id}`}>
+            <Button type="primary">Manage</Button>
+          </Link>
+          <Button
+            type="primary"
+            onClick={() =>
+              navigate(`/createresult/${hiringProcess._id}/${record._id}`)
+            }
+          >
+            Create Coding Round Result
+          </Button>
+        </div>
       ),
     },
   ];
@@ -234,9 +245,11 @@ const ManageHiringProcess = () => {
       title: "Action",
       key: "action",
       render: (text, record) => (
-        <Link to={`/manage/interviewround/${id}/${record._id}`}>
-          <Button type="primary">Manage</Button>
-        </Link>
+        <div>
+          <Link to={`/manage/interviewround/${id}/${record._id}`}>
+            <Button type="primary">Manage</Button>
+          </Link>
+        </div>
       ),
     },
   ];
@@ -253,7 +266,7 @@ const ManageHiringProcess = () => {
         <Sidebar />
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }}>
+        <Header className="site-layout-background header">
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -261,99 +274,17 @@ const ManageHiringProcess = () => {
             className="trigger-btn"
           />
         </Header>
-        <Content style={{ margin: "0 16px" }}>
-          <div className="">
-            <Form
-              layout="vertical"
-              name="hiringProcessForm"
-              onFinish={handleUpdate}
-              autoComplete="off"
-            >
-              <Form.Item
-                label="Job Title"
-                name="title"
-                rules={[
-                  { required: true, message: "Please enter the job title" },
-                ]}
-                initialValue={formData.title}
-              >
-                <Input
-                  name="title"
-                  value={formData.title}
-                  onChange={handleInputChange}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Description"
-                name="desc"
-                rules={[
-                  { required: true, message: "Please enter a job description" },
-                ]}
-                initialValue={formData.desc}
-              >
-                <Input.TextArea
-                  rows={4}
-                  name="desc"
-                  value={formData.desc}
-                  onChange={handleInputChange}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Number of Rounds"
-                name="numRounds"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter the number of rounds",
-                  },
-                ]}
-                initialValue={formData.numRounds}
-              >
-                <Input
-                  type="number"
-                  name="numRounds"
-                  value={formData.numRounds}
-                  onChange={handleInputChange}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Start Date"
-                name="startDate"
-                rules={[
-                  { required: true, message: "Please select a start date" },
-                ]}
-                initialValue={formData.startDate}
-              >
-                <DatePicker
-                  name="startDate"
-                  value={formData.startDate}
-                  onChange={(date) => handleDateChange("startDate", date)}
-                />
-              </Form.Item>
-              <Form.Item
-                label="End Date"
-                name="endDate"
-                rules={[
-                  { required: true, message: "Please select an end date" },
-                ]}
-                initialValue={formData.endDate}
-              >
-                <DatePicker
-                  name="endDate"
-                  value={formData.endDate}
-                  onChange={(date) => handleDateChange("endDate", date)}
-                />
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  Update
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
+        <Content
+          style={{
+            margin: "24px 16px 0",
+            padding: "24px",
+            background: "#fff",
+            borderRadius: "8px",
+          }}
+        >
           <div className="rounds-section">
             <div className="rounds-header">
-              <h2>Coding Rounds</h2>
+              <Title level={4}>Coding Rounds</Title>
               <Button type="primary" onClick={() => showModal("coding")}>
                 Add Coding Round
               </Button>
@@ -362,11 +293,13 @@ const ManageHiringProcess = () => {
               dataSource={codingRounds}
               columns={codingRoundColumns}
               rowKey="id"
+              pagination={{ pageSize: 5 }}
+              style={{ marginBottom: "24px" }}
             />
           </div>
           <div className="rounds-section">
             <div className="rounds-header">
-              <h2>Interview Rounds</h2>
+              <Title level={4}>Interview Rounds</Title>
               <Button type="primary" onClick={() => showModal("interview")}>
                 Add Interview Round
               </Button>
@@ -375,6 +308,7 @@ const ManageHiringProcess = () => {
               dataSource={interviewRounds}
               columns={interviewRoundColumns}
               rowKey="id"
+              pagination={{ pageSize: 5 }}
             />
           </div>
         </Content>
@@ -406,7 +340,7 @@ const ManageHiringProcess = () => {
                 name="date"
                 rules={[{ required: true, message: "Please select a date" }]}
               >
-                <DatePicker />
+                <DatePicker style={{ width: "100%" }} />
               </Form.Item>
               <Form.Item
                 label="Start Time"
@@ -435,14 +369,14 @@ const ManageHiringProcess = () => {
                   { required: true, message: "Please select start date" },
                 ]}
               >
-                <DatePicker />
+                <DatePicker style={{ width: "100%" }} />
               </Form.Item>
               <Form.Item
                 label="End Date"
                 name="endDate"
                 rules={[{ required: true, message: "Please select end date" }]}
               >
-                <DatePicker />
+                <DatePicker style={{ width: "100%" }} />
               </Form.Item>
               <Form.Item
                 label="Duration (minutes)"

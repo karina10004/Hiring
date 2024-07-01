@@ -16,6 +16,9 @@ const headers = {
 export const runCodeOnJudge0 = async (code, language, testCases, maxScore) => {
   try {
     const visibleTestCases = testCases.filter((testCase) => !testCase.isHidden);
+    let score = 0;
+    let testCasesPassed = 0;
+
     console.log(language);
     const results = await Promise.all(
       visibleTestCases.map(async (testCase) => {
@@ -32,9 +35,9 @@ export const runCodeOnJudge0 = async (code, language, testCases, maxScore) => {
 
         console.log(`Test Case ${testCase.input}:`, response.data);
         const { stdout, status, compile_output } = response.data;
-        if (status.id == 3) {
-          score = score + (testCase.weightage * maxScore) / 100;
-          testCasesPassed = testCasesPassed + 1;
+        if (status.id === 3) {
+          score += (testCase.weightage * maxScore) / 100;
+          testCasesPassed += 1;
         }
         return { stdout, status, compile_output, id: testCase._id };
       })
@@ -54,8 +57,9 @@ export const submitCodeToJudge0 = async (
   maxScore
 ) => {
   try {
-    let testCasesPassed = 0,
-      score = 0;
+    let testCasesPassed = 0;
+    let score = 0;
+
     const results = await Promise.all(
       testCases.map(async (testCase) => {
         const response = await axios.post(
@@ -71,9 +75,9 @@ export const submitCodeToJudge0 = async (
 
         console.log(`Test Case ${testCase.input}:`, response.data);
         const { stdout, status, compile_output } = response.data;
-        if (status.id == 3) {
-          score = score + (testCase.weightage * maxScore) / 100;
-          testCasesPassed = testCasesPassed + 1;
+        if (status.id === 3) {
+          score += (testCase.weightage * maxScore) / 100;
+          testCasesPassed += 1;
         }
         return { stdout, status, compile_output, id: testCase._id };
       })
