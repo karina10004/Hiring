@@ -1,32 +1,44 @@
-import React from 'react';
-import { Card, Col, Row, List, Typography, Progress } from 'antd';
-import {
-  FileTextOutlined,
-} from '@ant-design/icons';
+import React from "react";
+import { Card, Col, Row, List, Typography, Progress } from "antd";
+import { FileTextOutlined } from "@ant-design/icons";
 
 const { Title } = Typography;
 
 const jobListings = [
-  { title: 'Software Engineer', department: 'Engineering', status: 'Open' },
-  { title: 'Product Manager', department: 'Product', status: 'Open' },
-  { title: 'UI/UX Designer', department: 'Design', status: 'Closed' },
+  { title: "Software Engineer", department: "Engineering", status: "Open" },
+  { title: "Product Manager", department: "Product", status: "Open" },
+  { title: "UI/UX Designer", department: "Design", status: "Closed" },
 ];
 
 const recentActivities = [
-  { activity: 'Conducted Hiring for Amazon ', time: '2 hours ago', icon: <FileTextOutlined /> },
-  { activity: 'Conducted Hiring for Google', time: '1 day ago', icon: <FileTextOutlined /> },
-  { activity: 'Conducted Hiring for Myntra', time: '3 days ago', icon: <FileTextOutlined /> },
+  {
+    activity: "Conducted Hiring for Amazon ",
+    time: "2 hours ago",
+    icon: <FileTextOutlined />,
+  },
+  {
+    activity: "Conducted Hiring for Google",
+    time: "1 day ago",
+    icon: <FileTextOutlined />,
+  },
+  {
+    activity: "Conducted Hiring for Myntra",
+    time: "3 days ago",
+    icon: <FileTextOutlined />,
+  },
 ];
 
 const HomePage = () => (
-  <div style={{ padding: 24, background: '#f0f2f5', minHeight: 360 }}>
-    <Title level={2} style={{ marginBottom: 24 }}>Welcome to the Company Dashboard!</Title>
+  <div style={{ padding: 24, background: "#f0f2f5", minHeight: 360 }}>
+    <Title level={2} style={{ marginBottom: 24 }}>
+      Welcome to the Dashboard!
+    </Title>
     <Row gutter={16}>
       <Col span={12}>
         <Card title="Job Listings" bordered={false}>
           <List
             dataSource={jobListings}
-            renderItem={item => (
+            renderItem={(item) => (
               <List.Item>
                 <List.Item.Meta
                   title={item.title}
@@ -41,7 +53,7 @@ const HomePage = () => (
         <Card title="Recent Activities" bordered={false}>
           <List
             dataSource={recentActivities}
-            renderItem={item => (
+            renderItem={(item) => (
               <List.Item>
                 <List.Item.Meta
                   avatar={item.icon}

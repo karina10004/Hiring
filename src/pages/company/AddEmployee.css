@@ -10,7 +10,7 @@
 }
 
 /* Header style */
-.header {
+/* .header {
   padding: 0;
   background-color: #001529;
   display: flex;
@@ -18,7 +18,7 @@
   justify-content: space-between;
   color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
+} */
 
 .trigger-btn {
   font-size: 18px;
