@@ -31,12 +31,12 @@
 
 /* Selected menu item */
 .ant-menu-item-selected {
-  background-color: #4f6f52 !important; /* Selected background color */
-  color: #fff !important; /* Text color when selected */
+  background-color: hsl(209, 88%, 41%) !important; /* Selected background color */
+  color: #fff !important; 
 }
 
 /* Hover effect for menu items */
 .ant-menu-item:hover {
-  color: #4f6f52 !important; /* Hover text color */
+  color:  hsl(209, 88%, 41%); /* Hover text color */
   background-color: #f0f0f0; /* Hover background color */
 }

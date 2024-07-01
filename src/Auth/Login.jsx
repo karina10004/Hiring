@@ -46,7 +46,7 @@ const Login = () => {
           header: "Thank you for registering on our platform",
           message: `Here is the link to access it: ${link}`,
           info: "null",
-          recipientEmail: "anshjain2255@gmail.com",
+          recipientEmail: "karina.rajawat1101@gmail.com",
         });
         localStorage.removeItem("registrationToken");
         navigate(

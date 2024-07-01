@@ -6,7 +6,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import Sidebar from "./companydashboard/Dashboard";
 import { useParams } from "react-router-dom";
 import emailjs from "@emailjs/browser";
-
+import "./ManageInterview.css";
 const { Header, Sider, Content } = Layout;
 const { Option } = Select;
 
@@ -127,7 +127,7 @@ const ManageInterview = () => {
           header: "Check on the given link for interview round details",
           message: `this is the link ${link}`,
           info: "null",
-          recipientEmail: "anshjain2255@gmail.com",
+          recipientEmail: "karina.rajawat1101@gmail.com",
         });
       });
     } catch (error) {
@@ -225,39 +225,43 @@ const ManageInterview = () => {
         onCollapse={setCollapsed}
         theme="light"
       >
-        <div className="logo" />
+        <div className="custom-logo" />
         <Sidebar />
       </Sider>
-      <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }}>
+      <Layout className="custom-layout">
+        <Header className="custom-header">
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            className="trigger-btn"
+            className="custom-trigger-btn"
           />
         </Header>
-        <Content style={{ margin: "0 16px" }}>
-          <h2>Manage Interview</h2>
-          <h3>Unassigned Candidates</h3>
-          <Table
-            dataSource={unassignedCandidates}
-            columns={unassignedColumns}
-            rowKey="_id"
-          />
-          <Button
-            type="primary"
-            onClick={handleSaveAssignments}
-            style={{ marginTop: 16 }}
-          >
-            Save Assignments
-          </Button>
-          <h3>Assigned Candidates</h3>
-          <Table
-            dataSource={assignedCandidates}
-            columns={assignedColumns}
-            rowKey="_id"
-          />
+        <Content className="custom-content">
+          <h2 className="custom-heading">Manage Interview</h2>
+          <div className="custom-table-wrapper">
+            <h3 className="custom-heading">Unassigned Candidates</h3>
+            <Table
+              dataSource={unassignedCandidates}
+              columns={unassignedColumns}
+              rowKey="_id"
+            />
+            <Button
+              type="primary"
+              onClick={handleSaveAssignments}
+              className="custom-primary-button"
+            >
+              Save Assignments
+            </Button>
+          </div>
+          <div className="custom-table-wrapper">
+            <h3 className="custom-heading">Assigned Candidates</h3>
+            <Table
+              dataSource={assignedCandidates}
+              columns={assignedColumns}
+              rowKey="_id"
+            />
+          </div>
         </Content>
       </Layout>
     </Layout>

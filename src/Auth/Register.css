@@ -5,15 +5,15 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.site-layout-background {
+/* .site-layout-background {
   background: linear-gradient(135deg, #f0f2f5, #ffffff);
   color: white;
   padding: 20px;
   box-sizing: border-box;
-  /* min-height: 100vh; */
-}
+  
+} */
 
-.header {
+/* .header {
   padding: 0 20px;
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@ body {
   background-color: #001529;
   color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
+} */
 
 .trigger-btn {
   font-size: 18px;
@@ -37,12 +37,12 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-.rounds-header {
+/* .rounds-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
-}
+} */
 
 /* .ant-table {
   margin-bottom: 24px;

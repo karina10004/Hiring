@@ -98,11 +98,15 @@ const Room = () => {
   ]);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <Card>
-        <Title level={2}>Interview Room</Title>
+    <div className="container">
+      <Card className="custom-card">
+        <Title level={2} className="custom-title">
+          Interview Room
+        </Title>
         <div>
-          <Title level={4}>Candidate List</Title>
+          <Title level={4} className="custom-title">
+            Candidate List
+          </Title>
           <List
             itemLayout="horizontal"
             dataSource={registrations}
@@ -111,10 +115,12 @@ const Room = () => {
               const isJoined = candidateStatus[registration.candidateId];
               return (
                 <List.Item
+                  className="custom-list-item"
                   actions={[
                     candidate && (
                       <Button
                         type="primary"
+                        className="custom-button"
                         disabled={
                           !isJoined ||
                           callingCandidateId === registration.candidateId
@@ -130,11 +136,17 @@ const Room = () => {
                 >
                   <List.Item.Meta
                     title={
-                      candidate
-                        ? candidate.name
-                        : "Candidate information not available"
+                      <span className="custom-meta-title">
+                        {candidate
+                          ? candidate.name
+                          : "Candidate information not available"}
+                      </span>
                     }
-                    description={candidate ? candidate.email : ""}
+                    description={
+                      <span className="custom-meta-description">
+                        {candidate ? candidate.email : ""}
+                      </span>
+                    }
                   />
                 </List.Item>
               );

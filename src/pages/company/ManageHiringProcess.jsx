@@ -8,6 +8,7 @@ import {
   message,
   Modal,
   Table,
+  Typography,
 } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import axios from "axios";
@@ -15,7 +16,9 @@ import { jwtDecode } from "jwt-decode";
 import Sidebar from "./companydashboard/Dashboard";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import "./Managehiring.css";
+
 const { Header, Sider, Content } = Layout;
+const { Title } = Typography;
 
 const ManageHiringProcess = () => {
   const { id } = useParams();
@@ -266,7 +269,7 @@ const ManageHiringProcess = () => {
         <Sidebar />
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background header">
+        <Header className="header">
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
