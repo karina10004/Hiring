@@ -59,7 +59,12 @@ const CodingRoundScores = () => {
         const candidate = candidates.find((c) => c._id === candidateId);
         const totalScore = submissions
           .filter((submission) => submission.userId === candidateId)
-          .reduce((acc, submission) => acc + submission.score, 0);
+          .reduce((acc, submission) => {
+            console.log(
+              `Adding score ${submission.score} for candidate ${candidateId}`
+            );
+            return acc + submission.score;
+          }, 0);
 
         return {
           key: candidateId,
@@ -74,6 +79,7 @@ const CodingRoundScores = () => {
   };
 
   let scores = calculateScores();
+  console.log("Calculated Scores:", scores);
 
   const handleResultChange = (candidateId, result) => {
     setResults((prevResults) => ({

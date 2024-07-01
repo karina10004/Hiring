@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Card, Flex, Typography, Form, Input, message } from "antd";
-import { Button } from "antd/es/radio";
+import { Card, Typography, Form, Input, message, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import LoginImage from "../assets/Login.png";
 import emailjs from "@emailjs/browser";
+import LoginImage from "../assets/Login.png";
 import "./Auth.css";
+
+const { Title, Text } = Typography;
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -36,20 +37,17 @@ const Login = () => {
       const registrationToken = localStorage.getItem("registrationToken");
       if (registrationToken) {
         const candidateId = response.data.candidate._id;
-        console.log(candidateId);
         const registerResponse = await axios.post(
           `http://localhost:8000/api/register/${registrationToken}/${candidateId}`
         );
-        const link = `http://${window.location.host}/process/${response.data.companyId}/${response.data.hiringId}`;
+        const link = `http://${window.location.host}/process/${registerResponse.data.companyId}/${registerResponse.data.hiringId}`;
         await emailjs.send("service_kdjbg5o", "template_d0qkf0h", {
           subject: "Registered",
           header: "Thank you for registering on our platform",
-          message: `here is the link to access it 
-          ${link}`,
+          message: `Here is the link to access it: ${link}`,
           info: "null",
           recipientEmail: "anshjain2255@gmail.com",
         });
-        console.log("Registration response:", registerResponse.data);
         localStorage.removeItem("registrationToken");
         navigate(
           `/process/${response.data.companyId}/${response.data.hiringId}`
@@ -69,14 +67,14 @@ const Login = () => {
 
   return (
     <Card className="form-container">
-      <Flex gap="large" align="center">
-        <Flex vertical flex={1}>
-          <Typography.Title level={3} strong className="title">
+      <div className="form-content">
+        <div className="form-left">
+          <Title level={3} className="title">
             Login
-          </Typography.Title>
-          <Typography.Text type="secondary" strong className="slogan">
+          </Title>
+          <Text type="secondary" className="slogan">
             Join for exclusive access
-          </Typography.Text>
+          </Text>
           <Form layout="vertical" autoComplete="off">
             <Form.Item
               label="Email"
@@ -88,7 +86,7 @@ const Login = () => {
                 },
                 {
                   type: "email",
-                  message: "The input is not valid email",
+                  message: "The input is not a valid email",
                 },
               ]}
             >
@@ -135,11 +133,11 @@ const Login = () => {
               </Link>
             </Form.Item>
           </Form>
-        </Flex>
-        <Flex flex={1}>
+        </div>
+        <div className="form-right">
           <img src={LoginImage} className="auth-image" alt="Login" />
-        </Flex>
-      </Flex>
+        </div>
+      </div>
     </Card>
   );
 };

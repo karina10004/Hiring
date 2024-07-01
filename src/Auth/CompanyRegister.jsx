@@ -12,7 +12,7 @@ import {
 import { UploadOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Auth.css";
+import "./companyregister.css";
 import LoginImage from "../assets/Login.png";
 
 const props = {
@@ -79,7 +79,7 @@ const CompanyRegister = () => {
   return (
     <Card size="medium" className="form-container">
       <Flex gap="large" align="center">
-        <Flex vertical flex={1}>
+        <Flex vertical flex={1} className="cont">
           <Typography.Title level={3} strong className="title">
             Register Company
           </Typography.Title>
